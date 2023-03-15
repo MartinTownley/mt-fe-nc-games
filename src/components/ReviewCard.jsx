@@ -1,4 +1,5 @@
 import React from "react";
+// import "../styles/ReviewCard";
 
 const ReviewCard = ({
   review_id,
@@ -11,11 +12,11 @@ const ReviewCard = ({
   console.log(title, "<<title");
 
   return (
-    <article className="review-card">
+    <article className="Review-Card">
       {/* <h4> ReviewCard</h4> */}
       <h4> {title} </h4>
       <p> Reviewer: {owner} </p>
-      <p> Created at: {created_at} </p>
+      <p> Created at: {new Date(created_at).toLocaleDateString()} </p>
       <p> Comments: {comment_count} </p>
       <p> Votes: {votes} </p>
     </article>
