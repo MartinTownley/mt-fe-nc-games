@@ -19,3 +19,14 @@ export const getSingleReview = (id) => {
     return data.review;
   });
 };
+
+export const voteForReview = (id) => {
+  return gamesApi
+    .patch(`/reviews/${id}`, {
+      inc_votes: 1,
+    })
+    .then(({ data }) => {
+      console.log(data);
+      return data;
+    });
+};

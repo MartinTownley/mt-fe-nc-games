@@ -1,11 +1,15 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { getSingleReview } from "../utils/api";
+import { getSingleReview, voteForReview } from "../utils/api";
 import { useParams } from "react-router-dom";
 
 const SingleReview = () => {
   const [review, setReview] = useState({});
   const { review_id } = useParams();
+
+  const handleOnClick = () => {
+    console.log("voted up");
+  };
 
   useEffect(() => {
     getSingleReview(review_id).then((reviewData) => {
@@ -22,6 +26,10 @@ const SingleReview = () => {
       </p>
       <p>{review.review_body}</p>
       <p>Votes: {review.votes}</p>
+      <button className="vote-up" onClick={handleOnClick}>
+        ⬆️{" "}
+      </button>
+      <button className="vote-down">⬇️</button>
     </main>
   );
 };
