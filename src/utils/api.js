@@ -20,3 +20,12 @@ export const fetchReviewById = (id) => {
     return data.review;
   });
 };
+
+export const fetchCommentsByReviewId = (id) => {
+  let path = `/reviews/${id}/comments`;
+
+  return gamesApi.get(path).then(({ data }) => {
+    //console.log(data, "<< data in fetchCommentsByReviewId");
+    return data.comments;
+  });
+};
