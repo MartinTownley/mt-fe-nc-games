@@ -3,12 +3,16 @@ import { useState } from "react";
 import CommentCard from "./CommentCard";
 
 const CommentsList = ({ comments }) => {
-  console.log(comments, "<< comments in CommentsList");
+  //console.log(comments.length(), "<< comments length");
+  const commentCount = comments.length;
 
   return (
     <main className="Comments-List">
-      <h2> Comments </h2>
-
+      {commentCount > 0 ? (
+        <h2> Comments ({commentCount}) </h2>
+      ) : (
+        <h2> No comments yet.</h2>
+      )}
       <ul>
         <li>
           {comments.map((comment) => {

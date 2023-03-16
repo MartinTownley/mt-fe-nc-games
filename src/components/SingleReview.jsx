@@ -8,6 +8,8 @@ const SingleReview = () => {
   const [review, setReview] = useState({});
   const [comments, setComments] = useState([]);
 
+  const commentCount = comments.length;
+
   const { reviewId } = useParams();
   // we'll use reviewId to fetch data from the API.
   // if the reviewId is changed (by the user navigating to a new review) then the component will be re-rendered with the new reviewId.
@@ -29,8 +31,8 @@ const SingleReview = () => {
   return (
     <main className="Single-Review">
       <img src={review.review_img_url} className="review-img" />
-      <h3>{review.title} </h3>
-      <p>
+      <h2 className="Review-Title">{review.title} </h2>
+      <p className="Review-Owner">
         by <strong> {review.owner}</strong>
       </p>
       <p>{review.review_body}</p>
