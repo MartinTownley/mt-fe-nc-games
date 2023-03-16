@@ -5,38 +5,40 @@ import { getReviews } from "../utils/api";
 
 const ReviewsList = () => {
   const [reviews, setReviews] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    getReviews().then((reviewData) => {
-      console.log(reviewData, "<< reviewData");
-      const { reviews } = reviewData;
-      //console.log(reviews, "<< reviews");
-      setReviews(reviewData);
+    setIsLoading(true);
+    getReviews().then((reviewsData) => {
+      setReviews(reviewsData);
+      setIsLoading(false);
     });
   }, []);
 
   return (
-    <main className="items-list">
-      <h3>ReviewsList</h3>
-      {/* <ReviewCard /> */}
-      <ul>
-        <li>
-          {reviews.map(
-            ({ review_id, title, owner, created_at, votes, comment_count }) => {
+    <main className="Reviews-List">
+      <h3>Reviews</h3>
+      {isLoading ? (
+        <p> Loading Reviews... </p>
+      ) : (
+        <ul>
+          <li>
+            {reviews.map((review) => {
               return (
                 <ReviewCard
-                  key={review_id}
-                  title={title}
-                  owner={owner}
-                  created_at={created_at}
-                  votes={votes}
-                  comment_count={comment_count}
+                  key={review.review_id}
+                  review_id={review.review_id}
+                  title={review.title}
+                  owner={review.owner}
+                  created_at={review.created_at}
+                  votes={review.votes}
+                  comment_count={review.comment_count}
                 ></ReviewCard>
               );
-            }
-          )}
-        </li>
-      </ul>
+            })}
+          </li>
+        </ul>
+      )}
     </main>
   );
 };

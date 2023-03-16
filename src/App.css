@@ -36,6 +36,11 @@
   margin: 20px 0;
 }
 
+.Single-Review {
+  text-align: left;
+  padding: 1rem;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
