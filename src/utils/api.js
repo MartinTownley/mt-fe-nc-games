@@ -8,7 +8,14 @@ export const getReviews = () => {
   let path = `/reviews`;
 
   return gamesApi.get(path).then(({ data }) => {
-    console.log(data, "<< data");
     return data.reviews;
+  });
+};
+
+export const getSingleReview = (id) => {
+  let path = `/reviews/${id}`;
+
+  return gamesApi.get(path).then(({ data }) => {
+    return data.review;
   });
 };

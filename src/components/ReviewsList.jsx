@@ -9,41 +9,33 @@ const ReviewsList = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    getReviews().then((reviewData) => {
-      setReviews(reviewData);
+    getReviews().then((reviewsData) => {
+      setReviews(reviewsData);
       setIsLoading(false);
     });
   }, []);
 
   return (
-    <main className="items-list">
+    <main className="Reviews-List">
       <h3>Reviews</h3>
       {isLoading ? (
         <p> Loading Reviews... </p>
       ) : (
         <ul>
           <li>
-            {reviews.map(
-              ({
-                review_id,
-                title,
-                owner,
-                created_at,
-                votes,
-                comment_count,
-              }) => {
-                return (
-                  <ReviewCard
-                    key={review_id}
-                    title={title}
-                    owner={owner}
-                    created_at={created_at}
-                    votes={votes}
-                    comment_count={comment_count}
-                  ></ReviewCard>
-                );
-              }
-            )}
+            {reviews.map((review) => {
+              return (
+                <ReviewCard
+                  key={review.review_id}
+                  review_id={review.review_id}
+                  title={review.title}
+                  owner={review.owner}
+                  created_at={review.created_at}
+                  votes={review.votes}
+                  comment_count={review.comment_count}
+                ></ReviewCard>
+              );
+            })}
           </li>
         </ul>
       )}
