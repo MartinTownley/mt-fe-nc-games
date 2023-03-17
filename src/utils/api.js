@@ -4,7 +4,8 @@ const gamesApi = axios.create({
   baseURL: "https://mt-backend-nc-games.onrender.com/api",
 });
 
-export const getReviews = () => {
+// -- wrapper functions for axios.get()
+export const fetchReviews = () => {
   let path = `/reviews`;
 
   return gamesApi.get(path).then(({ data }) => {
@@ -12,10 +13,19 @@ export const getReviews = () => {
   });
 };
 
-export const getSingleReview = (id) => {
+export const fetchReviewById = (id) => {
   let path = `/reviews/${id}`;
 
   return gamesApi.get(path).then(({ data }) => {
     return data.review;
+  });
+};
+
+export const fetchCommentsByReviewId = (id) => {
+  let path = `/reviews/${id}/comments`;
+
+  return gamesApi.get(path).then(({ data }) => {
+    //console.log(data, "<< data in fetchCommentsByReviewId");
+    return data.comments;
   });
 };

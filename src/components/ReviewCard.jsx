@@ -9,7 +9,6 @@ const ReviewCard = ({
   votes,
   comment_count,
 }) => {
-  console.log(review_id, "<< review id in reviewCard");
   return (
     <article className="Review-Card">
       {/* <h4> {title} </h4> */}

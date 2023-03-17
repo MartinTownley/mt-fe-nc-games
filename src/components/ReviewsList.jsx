@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import ReviewCard from "./ReviewCard";
-import { getReviews } from "../utils/api";
+import { fetchReviews } from "../utils/api";
 
 const ReviewsList = () => {
   const [reviews, setReviews] = useState([]);
@@ -9,7 +9,7 @@ const ReviewsList = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    getReviews().then((reviewsData) => {
+    fetchReviews().then((reviewsData) => {
       setReviews(reviewsData);
       setIsLoading(false);
     });
