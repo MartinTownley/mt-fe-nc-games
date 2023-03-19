@@ -26,7 +26,7 @@ export const voteForReview = (id) => {
       inc_votes: 1,
     })
     .then(({ data }) => {
-      console.log(data);
+      console.log(data.updated_review.votes);
       return data;
     });
 };

@@ -6,9 +6,14 @@ import { useParams } from "react-router-dom";
 const SingleReview = () => {
   const [review, setReview] = useState({});
   const { review_id } = useParams();
+  const [userVote, setUserVote] = useState(0);
 
   const handleOnClick = () => {
-    console.log("voted up");
+    // set user vote here for optimistic rendering
+    setUserVote(1);
+    //console.log(`voted for ${review_id}  `);
+
+    voteForReview(review_id);
   };
 
   useEffect(() => {
@@ -25,7 +30,7 @@ const SingleReview = () => {
         by <strong> {review.owner}</strong>
       </p>
       <p>{review.review_body}</p>
-      <p>Votes: {review.votes}</p>
+      <p>Votes: {review.votes + userVote}</p>
       <button className="vote-up" onClick={handleOnClick}>
         ⬆️{" "}
       </button>
