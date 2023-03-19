@@ -25,13 +25,12 @@ export const fetchCommentsByReviewId = (id) => {
   let path = `/reviews/${id}/comments`;
 
   return gamesApi.get(path).then(({ data }) => {
-    //console.log(data, "<< data in fetchCommentsByReviewId");
     return data.comments;
   });
-
 };
 
 export const voteForReview = (id, inc) => {
+  console.log(id, "<< rev id");
   return gamesApi
     .patch(`/reviews/${id}`, {
       inc_votes: inc,
@@ -41,5 +40,4 @@ export const voteForReview = (id, inc) => {
       console.log(data.updated_review.votes, "<< votes after api request");
       return data;
     });
-  }
-
+};

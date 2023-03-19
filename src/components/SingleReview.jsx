@@ -1,7 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
-import { fetchReviewById, fetchCommentsByReviewId,voteForReview } from "../utils/api";
+import {
+  fetchReviewById,
+  fetchCommentsByReviewId,
+  voteForReview,
+} from "../utils/api";
 
 import { useParams } from "react-router-dom";
 import CommentsList from "./CommentsList";
@@ -10,10 +14,9 @@ const SingleReview = () => {
   const [review, setReview] = useState({});
   const [comments, setComments] = useState([]);
 
-  const { review_id } = useParams();
   const [userVote, setUserVote] = useState(0);
   const [isVotingErr, setIsVotingErr] = useState(false);
-  
+
   const commentCount = comments.length;
   const { reviewId } = useParams();
 
@@ -22,21 +25,11 @@ const SingleReview = () => {
     setIsVotingErr(false);
     setUserVote(inc);
 
-    voteForReview(review_id, inc).catch(() => {
+    voteForReview(reviewId, inc).catch(() => {
       setUserVote(0); // reset to default
       setIsVotingErr(true);
     });
   };
-
-  
-
-  
-
-  
-  // we'll use reviewId to fetch data from the API.
-  // if the reviewId is changed (by the user navigating to a new review) then the component will be re-rendered with the new reviewId.
-  // if the reviewId changes, re-run the effect and fetch new data.
-
 
   useEffect(() => {
     fetchReviewById(reviewId).then((reviewData) => {
@@ -78,7 +71,6 @@ const SingleReview = () => {
       {isVotingErr && <p> Vote unsuccessful due to an error.</p>}
 
       <CommentsList comments={comments} />
-
     </main>
   );
 };
