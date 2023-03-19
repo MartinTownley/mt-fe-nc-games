@@ -24,9 +24,10 @@ export const voteForReview = (id, inc) => {
   return gamesApi
     .patch(`/reviews/${id}`, {
       inc_votes: inc,
+      // second argument is params
     })
     .then(({ data }) => {
-      console.log(data.updated_review.votes);
+      console.log(data.updated_review.votes, "<< votes after api request");
       return data;
     });
 };

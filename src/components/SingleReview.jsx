@@ -7,14 +7,17 @@ const SingleReview = () => {
   const [review, setReview] = useState({});
   const { review_id } = useParams();
   const [userVote, setUserVote] = useState(0);
+  const [isVotingErr, setIsVotingErr] = useState(false);
 
   const handleOnClick = (inc) => {
     // inc passed in is 1 or -1 for up and down vote respectively
-    // set user vote here for optimistic rendering
+    setIsVotingErr(false);
     setUserVote(inc);
-    //console.log(`voted for ${review_id}  `);
 
-    voteForReview(review_id, inc);
+    voteForReview(review_id, inc).catch(() => {
+      setUserVote(0); // reset to default
+      setIsVotingErr(true);
+    });
   };
 
   useEffect(() => {
@@ -46,6 +49,7 @@ const SingleReview = () => {
       >
         ⬇️
       </button>
+      {isVotingErr && <p> Vote unsuccessful due to an error.</p>}
     </main>
   );
 };
