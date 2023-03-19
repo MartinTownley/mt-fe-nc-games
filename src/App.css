@@ -41,6 +41,32 @@
   padding: 1rem;
 }
 
+.Comments-List {
+  border: solid;
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+.Comment-Card {
+  border: groove;
+  border-radius: 4px;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.Review-Title {
+  margin-bottom: 0.5rem;
+}
+
+.Review-Owner {
+  margin-top: 0;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
