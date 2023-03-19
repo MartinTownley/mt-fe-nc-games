@@ -8,12 +8,13 @@ const SingleReview = () => {
   const { review_id } = useParams();
   const [userVote, setUserVote] = useState(0);
 
-  const handleOnClick = () => {
+  const handleOnClick = (inc) => {
+    // inc passed in is 1 or -1 for up and down vote respectively
     // set user vote here for optimistic rendering
-    setUserVote(1);
+    setUserVote(inc);
     //console.log(`voted for ${review_id}  `);
 
-    voteForReview(review_id);
+    voteForReview(review_id, inc);
   };
 
   useEffect(() => {
@@ -31,10 +32,20 @@ const SingleReview = () => {
       </p>
       <p>{review.review_body}</p>
       <p>Votes: {review.votes + userVote}</p>
-      <button className="vote-up" onClick={handleOnClick}>
+      <button
+        className="vote-up"
+        onClick={() => handleOnClick(1)}
+        disabled={userVote !== 0}
+      >
         ⬆️{" "}
       </button>
-      <button className="vote-down">⬇️</button>
+      <button
+        className="vote-down"
+        onClick={() => handleOnClick(-1)}
+        disabled={userVote !== 0}
+      >
+        ⬇️
+      </button>
     </main>
   );
 };

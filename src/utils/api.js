@@ -20,10 +20,10 @@ export const getSingleReview = (id) => {
   });
 };
 
-export const voteForReview = (id) => {
+export const voteForReview = (id, inc) => {
   return gamesApi
     .patch(`/reviews/${id}`, {
-      inc_votes: 1,
+      inc_votes: inc,
     })
     .then(({ data }) => {
       console.log(data.updated_review.votes);
